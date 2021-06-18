@@ -1,5 +1,5 @@
 $script_start_byte = 0x0005e2be
-$script_length = 2884;
+$script_length = 0000;
 $filename = "ds7002.lnk"
 
 if (-not(Test-Path $filename))

