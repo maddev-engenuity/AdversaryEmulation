@@ -1,13 +1,20 @@
 # To execute this script:
 #   1) Open powershell window as administrator
 #   2) Allow script execution by running command "Set-ExecutionPolicy Unrestricted"
-#   3) Execute the script by running ".\install.ps1"
+#   3) Execute the script by running ".\setup_windows_target.ps1"
+
+# check if we're admin
+$RunningAsAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")
+if ($RunningAsAdmin -eq $FALSE) {
+    Write-Host "You must run this script as administrator."
+    return
+}
 
 # Install package manager
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
-# install sysinternals
-choco install sysinternals wireshark ghidra -y
+# install needed tools
+choco install sysinternals apimonitor wireshark ghidra -y
 
 # Disable Windows Defender
 try {
@@ -45,6 +52,8 @@ try {
   }
 } catch {
   Write-Warning "Failed to disable Windows Defender"
+  Write-Warning "Make sure Tamper Protection is disabled, then try running this script again."
+  return
 }
 
 # Disable firewall
