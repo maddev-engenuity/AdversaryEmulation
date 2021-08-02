@@ -1,1 +1,1 @@
-# MITRE ATT&CK Defender - ATT&CK Threat Emulation
+# MITRE ATT&CK Defender - ATT&CK Adversary Emulation
