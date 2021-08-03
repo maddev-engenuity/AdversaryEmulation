@@ -240,6 +240,10 @@ sleep 1
 net user /add target "ATT&CK"
 net user target /EXPIRES:NEVER
 
+# set desktop background
+Write-Host "[*] Setting desktop background"
+.\set_windows_wallpaper.ps1
+
 # Enable RDP
 Write-Host "[*] Enabling RDP"
 sleep 1
