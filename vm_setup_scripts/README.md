@@ -35,7 +35,7 @@ Automatic Sample Submission
 Tamper Protection
 ```
 
-6. Install git, then git clone this repo to the user desktop:
+5. Install git, then git clone this repo to the user desktop:
 
 ```powershell
 cd $env:userprofile\Desktop
@@ -44,13 +44,13 @@ git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 
 `Note: our GitHub repository requires user accounts to enable multi-factor authentication`
 
-7. Open an administrative PowerShell terminal and run the setup script as follows:
+6. Open an administrative PowerShell terminal and run the setup script as follows:
 
 ```powershell
 Set-ExecutionPolicy Bypass -Force
 .\setup_windows_target.ps1
 ```
 
-8. Reboot the VM, log back in, and confirm Windows Defender is still disabled.
+7. Reboot the VM, log back in, and confirm Windows Defender is still disabled.
 
 If Defender is still enabled, open Defender settings, disable all features, re-run the setup script, and reboot.
