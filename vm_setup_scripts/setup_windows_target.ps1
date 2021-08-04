@@ -207,6 +207,10 @@ choco install sysinternals apimonitor wireshark -y
 Write-Host "[*] Renaming hostname to 'targetVM'"
 Rename-Computer -NewName "targetVM"
 
+# set course background
+reg add "HKEY_CURRENT_USER\Control Panel\Desktop" /v Wallpaper /t REG_SZ /d "$pwd/target_background.jpg" /f
+rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, $true
+
 # Reboot
 Write-Host "[*] Setup complete."
 Write-Host "[*] Please reboot the system and log back in."
