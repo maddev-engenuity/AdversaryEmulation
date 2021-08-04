@@ -1,10 +1,53 @@
 # MAD ATT&CK Adversary Emulation VM Setup Instructions
 
-Remarks
+This README provides instructions on configuring Kali and Windows virtual machines used in the MITRE ATT&CK Defender ATT&CK Adversary Emulation course.
 
-## Configure Windows Target
+---
 
-1. Install a Windows VM in the hypervisor of your choice.
+## Install Kali 10 VM
+
+1. Install a Kali Linux VM in the hypervisor of your choice.
+
+We reccomend configuring the VM with the following specs:
+
+```
+OS: Latest version of Kali Linux
+CPU: 2 core CPU
+RAM: 8 GB
+Disk: 50 GB
+Networking: Should be able to ping the Windows 10 VM and reach the Internet
+```
+
+2. During OS installation, configure the hostname and username; accept default values for other options.
+
+```
+Hostname: attackerVM
+Username: attacker
+Password: ATT&CK
+```
+
+3. After OS install, login as the attacker user and git clone this repo to the desktop:
+
+```bash
+cd ~/Desktop
+git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
+```
+
+`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo.`
+
+4. Run the Kali setup script as follows:
+
+```bash
+cd AdversaryEmulation/vm_setup_scripts
+sudo chmod 755 setup_attack_platform.sh
+./setup_attack_platform.sh
+```
+
+---
+
+## Install Windows 10 VM
+
+1. Install a Windows 10 VM in the hypervisor of your choice.
  
 We reccomend configuring the VM with the following specs:
 
@@ -42,7 +85,7 @@ cd $env:userprofile\Desktop
 git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 ```
 
-`Note: our GitHub repository requires user accounts to enable multi-factor authentication`
+`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo.`
 
 6. Open an administrative PowerShell terminal and run the setup script as follows:
 
