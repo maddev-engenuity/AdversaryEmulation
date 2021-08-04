@@ -12,11 +12,10 @@ See the [vm_setup_scripts](vm_setup_scripts/) folder for guidance on setting up 
 
 ---
 
-```
 Fundamentally, this course entails executing publicly known adversary TTPs so that we can assess and improve cybersecurity. As a result, many of our tools and resources will likely be flagged malicious by security products. We make every effort to ensure that our adversary emulation content is trusted and safe for the purpose of offensive security testing.  
-  
+
 As a precaution, you should not perform these labs on any system that contains sensitive data. Additionally, you should never use capabilities and/or techniques taught in this course without first obtaining explicit written permission from the system/network owner(s).  
-```
+
 
 ## Have Issues?
 
