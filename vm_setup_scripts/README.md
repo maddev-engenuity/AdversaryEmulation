@@ -35,12 +35,14 @@ git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 
 `Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo.`
 
-4. Run the Kali setup script as follows:
+4. Open a terminal running as user 'attacker'; copy and paste these commands:
 
 ```bash
-cd AdversaryEmulation/vm_setup_scripts
-sudo chmod 755 setup_attack_platform.sh
-./setup_attack_platform.sh
+cd ~/Desktop/AdversaryEmulation/vm_setup_scripts
+chmod 755 setup_kali_VM.sh
+chmod 755 set_kali_wallpaper.sh
+./set_kali_wallpaper.sh
+sudo ./setup_kali_VM.sh
 ```
 
 ---
@@ -91,7 +93,8 @@ git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 
 ```powershell
 Set-ExecutionPolicy Bypass -Force
-.\setup_windows_target.ps1
+cd $env:USERPROFILE\Desktop\AdversaryEmulation\vm_setup_scripts
+.\setup_windows10_VM.ps1
 ```
 
 7. Reboot the VM, log back in, and confirm Windows Defender is still disabled.
