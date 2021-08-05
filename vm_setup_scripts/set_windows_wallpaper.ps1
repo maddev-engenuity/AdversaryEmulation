@@ -4,7 +4,7 @@
 # Get each folder under "Users"
 $drive = (Get-Location).Drive.Root
 $users = Get-ChildItem "$($drive)Users"
-Copy-Item target_background.jpg C:\\Users\\Public\\Pictures\\target_background.jpg
+Copy-Item target_background.png C:\\Users\\Public\\Pictures\\target_background.png
 
 # For each user, load and edit their registry
 foreach ( $user in $users ) {
@@ -35,4 +35,5 @@ foreach ( $user in $users ) {
         [gc]::Collect()
         reg.exe UNLOAD HKU\Temp
     }
+    rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, $true
 }
