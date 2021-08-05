@@ -11,7 +11,7 @@ This README provides instructions on configuring Kali and Windows virtual machin
 We reccomend configuring the VM with the following specs:
 
 ```
-OS: Latest version of Kali Linux
+OS: Latest version of Kali Linux (64-bit)
 CPU: 2 core CPU
 RAM: 8 GB
 Disk: 50 GB
@@ -54,7 +54,7 @@ sudo ./setup_kali_VM.sh
 We reccomend configuring the VM with the following specs:
 
 ```
-OS: Latest version of Windows 10
+OS: Windows 10 Professional (64-bit)
 CPU: 2 core CPU
 RAM: 8 GB
 Disk: 50 GB
