@@ -207,6 +207,13 @@ choco install sysinternals apimonitor wireshark -y
 Write-Host "[*] Renaming hostname to 'targetVM'"
 Rename-Computer -NewName "targetVM"
 
+# View file extensions and hidden items
+$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+Set-ItemProperty $key Hidden 1
+Set-ItemProperty $key HideFileExt 0
+Set-ItemProperty $key ShowSuperHidden 1
+Stop-Process -processname explorer
+
 # Reboot
 Write-Host "[*] Setup complete."
 Write-Host "[*] Please reboot the system and log back in."
