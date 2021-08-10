@@ -1,14 +1,14 @@
 # MAD ATT&CK Adversary Emulation VM Setup Instructions
 
-This README provides instructions on configuring Kali and Windows virtual machines used in the MITRE ATT&CK Defender ATT&CK Adversary Emulation course.
+Some of the hands-on labs in this course require a specific lab environment in order for students to successfully complete them. This folder contains scripts and supplemental files for setting up the `attacker` and `target` virtual machines used in those labs.
 
----
+Virtual Machines must first be installed according to the requirements below, and then the included setup scripts can be executed to complete the configuration of the machines.
 
 ## Install Kali 10 VM
 
 1. Install a Kali Linux VM in the hypervisor of your choice.
 
-We reccomend configuring the VM with the following specs:
+We recommend configuring the VM with the following specs:
 
 ```
 OS: Latest version of Kali Linux (64-bit)
