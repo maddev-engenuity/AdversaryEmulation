@@ -204,8 +204,11 @@ Write-Host "[*] Installing needed tools"
 choco install sysinternals apimonitor wireshark -y
 
 # set VM hostname
-Write-Host "[*] Renaming hostname to 'targetVM'"
-Rename-Computer -NewName "targetVM"
+$hostname = hostname
+if ($hostname -ne "targetVM"){
+  Write-Host "[*] Renaming hostname to 'targetVM'"
+  Rename-Computer -NewName "targetVM"
+}
 
 # Reboot
 Write-Host "[*] Setup complete."
