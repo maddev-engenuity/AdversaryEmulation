@@ -33,7 +33,12 @@ def main():
 		print('XOR key can only be one character long.')
 		os.exit(1)
 
-	encrypt_file(args.input, args.output, args.key)
+	print('[+] XOR encrypting {} into {} using the following single character encryption key: {}'.format(args.input, args.output, args.key))
+	try:
+		encrypt_file(args.input, args.output, args.key)
+	except:
+		print('[-] Encryption failed')
+	print('[+] Encryption completed successfully')
 
 
 if __name__ == '__main__':
