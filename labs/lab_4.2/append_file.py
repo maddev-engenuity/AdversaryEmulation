@@ -24,9 +24,9 @@ def append_file(source, dest, seek=None):
 				sys.exit(1)
 			out_file.write(bytearray((chr(0) * seek_length).encode('utf-8')))
 
-		print(source + ' start byte is: 0x%0.8x' % out_file.tell())
+		print("[*] " + source + ' start byte is: 0x%0.8x' % out_file.tell())
 		out_file.write(data)
-		print(source + ' end byte is: 0x%0.8x' % out_file.tell())
+		print("[*] " + source + ' end byte is: 0x%0.8x' % out_file.tell())
 
 
 def parse_arguments():
@@ -40,8 +40,9 @@ def parse_arguments():
 
 def main():
 	args = parse_arguments()
-	task_message = '[+] Appending the contents of {} to {}'.format(args.source, args.dest) + (args.seek ? ' at offset {}'.format(hex(args.seek)) : '')
-	print(task_message)
+	task_message = '[+] Appending the contents of {} to {}'.format(args.source, args.dest)
+	seek_message = ' at offset {}'.format(hex(args.seek)) if args.seek else ''
+	print(task_message + seek_message)
 	append_file(args.source, args.dest, args.seek)
 	print('[+] Append completed successfully')
 
