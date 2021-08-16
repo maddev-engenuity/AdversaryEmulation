@@ -204,8 +204,11 @@ Write-Host "[*] Installing needed tools"
 choco install sysinternals apimonitor wireshark -y
 
 # set VM hostname
-Write-Host "[*] Renaming hostname to 'targetVM'"
-Rename-Computer -NewName "targetVM"
+$hostname = hostname
+if ($hostname -ne "targetVM"){
+  Write-Host "[*] Renaming hostname to 'targetVM'"
+  Rename-Computer -NewName "targetVM"
+}
 
 # View file extensions and hidden items
 $key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
