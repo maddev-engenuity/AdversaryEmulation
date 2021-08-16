@@ -1,31 +1,11 @@
-# Attempt to disable Windows Defender
-try {
-    New-Item -Path 'HKLM:\SOFTWARE\Policies\Microsoft' -Name "Windows Defender" -Force -ea 0 | Out-Null
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableAntiSpyware" -Value 1 -PropertyType DWORD -Force -ea 0 | Out-Null
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender" -Name "DisableRoutinelyTakingAction" -Value 1 -PropertyType DWORD -Force -ea 0 | Out-Null
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SpyNetReporting" -Value 0 -PropertyType DWORD -Force -ea 0 | Out-Null
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows Defender\Spynet" -Name "SubmitSamplesConsent" -Value 0 -PropertyType DWORD -Force -ea 0 | Out-Null
-    New-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\MRT" -Name "DontReportInfectionInformation" -Value 1 -PropertyType DWORD -Force -ea 0 | Out-Null
-    Add-MpPreference -ExclusionPath "C:\" -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableArchiveScanning $true  -ea 0 | Out-Null
-    Set-MpPreference -DisableBehaviorMonitoring $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableBlockAtFirstSeen $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableCatchupFullScan $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableCatchupQuickScan $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableIntrusionPreventionSystem $true  -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableIOAVProtection $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableRealtimeMonitoring $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableRemovableDriveScanning $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableRestorePoint $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableScanningMappedNetworkDrivesForFullScan $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableScanningNetworkFiles $true -Force -ea 0 | Out-Null
-    Set-MpPreference -DisableScriptScanning $true -Force -ea 0 | Out-Null
-    Set-MpPreference -EnableControlledFolderAccess Disabled -Force -ea 0 | Out-Null
-    Set-MpPreference -EnableNetworkProtection AuditMode -Force -ea 0 | Out-Null
-    Set-MpPreference -MAPSReporting Disabled -Force -ea 0 | Out-Null
-    Set-MpPreference -SubmitSamplesConsent NeverSend -Force -ea 0 | Out-Null
-    Set-MpPreference -PUAProtection Disabled -Force -ea 0 | Out-Null
-}
-catch {
-    Write-Warning "Failed to disable Windows Defender"
-}
+# Prevent Defender from turning back on after reboot
+New-Item -Path "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\" -Name "Windows Defender" -ErrorAction Ignore
+Set-ItemProperty "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows Defender" "DisableAntiSpyware" 1
+
+Set-MpPreference -DisableRealtimeMonitoring $true -DisableBehaviorMonitoring $true `
+-DisableIntrusionPreventionSystem $true -DisableIOAVProtection $true -DisableScriptScanning $true `
+-DisableArchiveScanning $true -DisableCatchupFullScan $true -DisableCatchupQuickScan $true `
+-DisableEmailScanning $true -DisableRemovableDriveScanning $true -DisableScanningMappedNetworkDrivesForFullScan $true `
+-DisableScanningNetworkFiles $true -SignatureDisableUpdateOnStartupWithoutEngine $true -DisableBlockAtFirstSeen $true `
+-SevereThreatDefaultAction 6 -MAPSReporting 0 -HighThreatDefaultAction 6 -ModerateThreatDefaultAction 6 -LowThreatDefaultAction 6 `
+-SubmitSamplesConsent 2 -ErrorAction Stop
