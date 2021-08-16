@@ -33,7 +33,7 @@ cd ~/Desktop
 git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 ```
 
-`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo.`
+`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo. More information on how to setup GitHub with an SSH key can be found at https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh.`
 
 4. Open a terminal running as user 'attacker'; copy and paste these commands:
 
@@ -71,11 +71,11 @@ Password: ATT&CK
 
 3. Decline all telemetry / Microsoft account prompts throughout OS installation.
 
-4. After the OS has installed, login as target, open Windows Defender settings and disable all features:
+4. After the OS has installed, login as target, open Windows Security, and select 'Virus & Threat Protection'. Then, select 'Manage Settings' under 'Virus & Threat Protection Settings' and turn off the following features:
 
 ```
-Real Time Protection
-Cloud Based Protection
+Real-Time Protection
+Cloud-Delivered Protection
 Automatic Sample Submission
 Tamper Protection
 ```
@@ -87,7 +87,7 @@ cd $env:userprofile\Desktop
 git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
 ```
 
-`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo.`
+`Note: our GitHub repository requires user accounts with multi-factor authentication enabled; you may have to generate an SSH key in order to clone the repo. More information on how to setup GitHub with an SSH key can be found at https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh.`
 
 6. Open an administrative PowerShell terminal and run the setup script as follows:
 
