@@ -23,7 +23,7 @@ foreach ( $user in $users ) {
     if ( (Test-Path $dir) ) {
 
         # Set the image
-        Set-ItemProperty -Path $dir -Name "Wallpaper" -value "$($drive)Users\Public\Pictures\target_background.jpg"
+        Set-ItemProperty -Path $dir -Name "Wallpaper" -value "$($drive)Users\Public\Pictures\target_background.png"
 
         # Set the style to stretch
         Set-ItemProperty -Path $dir -Name "WallpaperStyle" -value 2
