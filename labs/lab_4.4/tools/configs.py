@@ -2,6 +2,10 @@ import ast
 import configparser
 import os
 
+"""
+Contains several values used by lnk_payload.py and the modified version of PyFuscation.py included in this folder.
+"""
+
 pdf_length_placeholder = '#<PDF_FILELENGTH>'
 dll_length_placeholder = '#<DLL_FILELENGTH>'
 loader_length_placeholder = '#<LOADER_FILELENGTH>'
@@ -25,9 +29,9 @@ argument_prefix = '-noni -noe -WindowStyle hidden -e '
 icon = 'C:\\Windows\\System32\\SHELL32.dll'
 icon_index = 1
 
+# The following fields are required by PyFuscation to run.
 config = configparser.ConfigParser()
 PSconfigFile = os.path.abspath(os.path.dirname(__file__)) + '/PSconfig.ini'
-print('PSconfigFile: ' + PSconfigFile)
 config.read(PSconfigFile)
 global Reseverd 
 Reseverd = ast.literal_eval(config.get('PS_Reserverd', 'f'))

@@ -4,15 +4,25 @@ import os
 
 
 def xor(data, key):
+	"""
+	Performing XOR encryption on the provided data with the specified key.
+	"""
 	return bytearray([ a ^ ord(key) for a in data])
 
 
 def encode(data):
+	"""
+	Base64 encoding provided data.
+	"""
 	enc_data = base64.b64encode(data)
 	return enc_data
 
 
 def append_file(source, dest, to_encode, xor_key, seek=None):
+	"""
+	This function appends the contents of the source file into the dest file.
+	If a seek value is specified, 0s are inserted from the end of the dest file until the seek value is reached.
+	"""
 
 	with open(source, 'rb') as in_file:
 		data = in_file.read()
