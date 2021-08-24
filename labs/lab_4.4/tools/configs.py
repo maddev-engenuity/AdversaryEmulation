@@ -26,7 +26,7 @@ icon = 'C:\\Windows\\System32\\SHELL32.dll'
 icon_index = 1
 
 config = configparser.ConfigParser()
-PSconfigFile = os.path.abspath(os.path.dirname(__file__)) + '/tools/pyfuscation' + '/PSconfig.ini'
+PSconfigFile = os.path.abspath(os.path.dirname(__file__)) + '/PSconfig.ini'
 print('PSconfigFile: ' + PSconfigFile)
 config.read(PSconfigFile)
 global Reseverd 

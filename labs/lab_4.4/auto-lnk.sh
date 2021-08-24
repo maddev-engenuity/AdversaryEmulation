@@ -7,7 +7,7 @@ echo "[+] Prepping required files"
 scripts/prep-automation.sh
 
 echo "[+] Creating the malicious LNK payload"
-scripts/lnk_payload.py
+tools/lnk_payload.py
 
 echo "[+] Payload created!"
 rm -f resources/loader.ps1

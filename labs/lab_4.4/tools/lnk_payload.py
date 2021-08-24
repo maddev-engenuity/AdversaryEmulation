@@ -1,13 +1,13 @@
 #!/bin/env python3
 
 import base64
-import os
 import subprocess
 
-from tools.append_file_with_enc import append_file, encode
-from tools.configs import *
-import tools.evillnk
-import tools.pyfuscation.PyFuscation
+import evillnk
+import PyFuscation
+
+from append_file_with_enc import append_file, encode
+from configs import *
 
 
 def replace_placeholder(template, outfile, replacements):
@@ -26,7 +26,7 @@ def perform_obfuscation(filename):
 	obfuPARMS = dict()
 	obfuFUNCs = dict()
 
-	obfuVAR = PyFuscation.findVARs(filename) 
+	obfuVAR = PyFuscation.findVARs(filename)
 	PyFuscation.useSED(obfuVAR, filename)
 
 	obfuPARMS = PyFuscation.findCustomParams(filename, obfuVAR)
