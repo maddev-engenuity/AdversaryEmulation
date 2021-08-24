@@ -4,10 +4,10 @@ import base64
 import os
 import subprocess
 
-from append_file_with_enc import append_file, encode
-from configs import *
-import evillnk
-import PyFuscation
+from tools.append_file_with_enc import append_file, encode
+from tools.configs import *
+import tools.evillnk
+import tools.pyfuscation.PyFuscation
 
 
 def replace_placeholder(template, outfile, replacements):
