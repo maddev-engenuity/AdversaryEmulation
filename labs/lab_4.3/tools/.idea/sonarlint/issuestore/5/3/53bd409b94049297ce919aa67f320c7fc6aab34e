@@ -1,0 +1,57 @@
+
+dpython:S2208"GImport only needed names or import the module and then use its members.(½ş·õùÿÿÿÿ
+gpython:S1542"ORename function "printR" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(óâ€Â
+gpython:S1542"ORename function "printG" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ş±µö
+lpython:S1542"ORename function "printY" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(šÈ¥¶ûÿÿÿÿ
+lpython:S1542"ORename function "printP" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(‘®á‹üÿÿÿÿ
+npython:S1542 "VRename function "realTimeMuxER" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(™¹›°
+Cpython:S1481("&Remove the unused local variable "rc".(æÉø›ûÿÿÿÿ
+jpython:S117*"NRename this parameter "oF" to match the regular expression ^[_a-z][a-z0-9_]*$.(¶À€ûÿÿÿÿ
+ppython:S1542*"SRename function "removeJunk" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¶À€ûÿÿÿÿ
+lpython:S1173"PRename this parameter "DICT" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ÿ˜¤ûÿÿÿÿ
+jpython:S1173"NRename this parameter "oF" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ÿ˜¤ûÿÿÿÿ
+lpython:S15423"ORename function "useSED" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(Ÿ˜¤ûÿÿÿÿ
+lpython:S1179"PRename this parameter "DICT" to match the regular expression ^[_a-z][a-z0-9_]*$.(”Œº²ûÿÿÿÿ
+jpython:S1179"NRename this parameter "iF" to match the regular expression ^[_a-z][a-z0-9_]*$.(”Œº²ûÿÿÿÿ
+ppython:S117:"YRename this local variable "iFHandle" to match the regular expression ^[_a-z][a-z0-9_]*$.(’œé
+rpython:S117="[Rename this local variable "lower_DICT" to match the regular expression ^[_a-z][a-z0-9_]*$.(‘Çíß
+jpython:S1179"NRename this parameter "oF" to match the regular expression ^[_a-z][a-z0-9_]*$.(”Œº²ûÿÿÿÿ
+upython:S117;"YRename this local variable "ofHandle" to match the regular expression ^[_a-z][a-z0-9_]*$.(Á®û¥üÿÿÿÿ
+qpython:S15429"TRename function "THEreplacER" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(”Œº²ûÿÿÿÿ
+7python:S3626z"Remove this redundant continue.(À–¬ˆ
+npython:S117U"WRename this local variable "PARAMs" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œ¾Öâ
+lpython:S117T"PRename this parameter "VARs" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿ãéÿÿÿÿÿ
+mpython:S117T"QRename this parameter "iFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(¿ãéÿÿÿÿÿ
+vpython:S1542T"YRename function "findCustomParams" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¿ãéÿÿÿÿÿ
+qpython:S3776T"TRefactor this function to reduce its Cognitive Complexity from 42 to the 15 allowed.(¿ãéÿÿÿÿÿ
+gpython:S1854—"IRemove this assignment to local variable 'vNum'; the value is never used.(•¸¯ùüÿÿÿÿ
+rpython:S117–"URename this local variable "VARs" to match the regular expression ^[_a-z][a-z0-9_]*$.(ôíëııÿÿÿÿ
+npython:S117•"QRename this parameter "iFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(õØÇÀùÿÿÿÿ
+wpython:S117¢"ZRename this local variable "lowerVARS" to match the regular expression ^[_a-z][a-z0-9_]*$.(ÀÑ†ùÿÿÿÿ
+rpython:S117—"URename this local variable "vNum" to match the regular expression ^[_a-z][a-z0-9_]*$.(•¸¯ùüÿÿÿÿ
+opython:S1542•"QRename function "findVARs" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(õØÇÀùÿÿÿÿ
+Cpython:S1481¨"%Remove the unused local variable "n".(êõ€üÿÿÿÿ
+spython:S117²"VRename this local variable "FUNCs" to match the regular expression ^[_a-z][a-z0-9_]*$.(©Îâûÿÿÿÿ
+rpython:S117µ"ZRename this local variable "funcMatch" to match the regular expression ^[_a-z][a-z0-9_]*$.(ËÌµß
+npython:S117°"QRename this parameter "iFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(¬±Ÿ°ùÿÿÿÿ
+rpython:S117¹"URename this local variable "vNum" to match the regular expression ^[_a-z][a-z0-9_]*$.(•¸¯ùüÿÿÿÿ
+ppython:S1542°"RRename function "findFUNCs" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(¬±Ÿ°ùÿÿÿÿ
+Fpython:S1481¹"(Remove the unused local variable "vNum".(•¸¯ùüÿÿÿÿ
+Apython:S1481¼"(Remove the unused local variable "vNum".(ğ¢İè
+Cpython:S1481º"%Remove the unused local variable "n".(ÇÄÓŒÿÿÿÿÿ
+npython:S117À"QRename this parameter "iFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(®•ÑÅúÿÿÿÿ
+spython:S1542À"URename function "randomString" to match the regular expression ^[a-z_][a-z0-9_]{2,}$.(®•ÑÅúÿÿÿÿ
+gpython:S1854Ø"NRemove this assignment to local variable 'obfuFUNCs'; the value is never used.(Ôè›
+gpython:S1854×"NRemove this assignment to local variable 'obfuPARMS'; the value is never used.(„úŸÍ
+spython:S117Ò"VRename this local variable "fFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(øõÒºûÿÿÿÿ
+mpython:S117Ê"VRename this local variable "iFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(¦'
+mpython:S117Î"URename this local variable "oDir" to match the regular expression ^[_a-z][a-z0-9_]*$.(½ï´Â
+npython:S117Ğ"VRename this local variable "oFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(Œ†Ù°
+rpython:S117Ø"ZRename this local variable "obfuFUNCs" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ôè›
+rpython:S117×"ZRename this local variable "obfuPARMS" to match the regular expression ^[_a-z][a-z0-9_]*$.(„úŸÍ
+upython:S117Ö"XRename this local variable "obfuVAR" to match the regular expression ^[_a-z][a-z0-9_]*$.(ö»ïøÿÿÿÿ
+npython:S117Ó"VRename this local variable "pFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ë®ï
+spython:S117Ñ"VRename this local variable "vFile" to match the regular expression ^[_a-z][a-z0-9_]*$.(•¢’¶şÿÿÿÿ
+`python:S930ß"IRemove 1 unexpected arguments; 'findVARs' expects 1 positional arguments.(©Û²O
+ipython:S930å"QRemove 1 unexpected arguments; 'findCustomParams' expects 2 positional arguments.(ÄéÂ°
+bpython:S930ë"JRemove 1 unexpected arguments; 'findFUNCs' expects 1 positional arguments.(Â¸å

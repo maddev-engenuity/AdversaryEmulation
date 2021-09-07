@@ -1,0 +1,9 @@
+
+qpython:S117$"ZRename this local variable "obfuFUNCs" to match the regular expression ^[_a-z][a-z0-9_]*$.(Ôè›
+tpython:S117""XRename this local variable "obfuVAR" to match the regular expression ^[_a-z][a-z0-9_]*$.(ö»ïøÿÿÿÿ
+dpython:S2208
+"GImport only needed names or import the module and then use its members.(½ş·õùÿÿÿÿ
+ipython:S1854""LRemove this assignment to local variable 'obfuVAR'; the value is never used.(ö»ïøÿÿÿÿ
+qpython:S117#"ZRename this local variable "obfuPARMS" to match the regular expression ^[_a-z][a-z0-9_]*$.(„úŸÍ
+fpython:S1854#"NRemove this assignment to local variable 'obfuPARMS'; the value is never used.(„úŸÍ
+fpython:S1854$"NRemove this assignment to local variable 'obfuFUNCs'; the value is never used.(Ôè›
