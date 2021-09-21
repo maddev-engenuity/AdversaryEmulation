@@ -100,7 +100,8 @@ def main():
 	"""
 	This function:
 		- prepares the loader and stage 1 scripts
-		- constructs the malicious LNK file, passing the stage 1 script as the encoded PowerShell command to execute
+		- constructs the malicious LNK file, passing the stage 1 script as the encoded
+			PowerShell command to execute
 		- appropriately appends the dummy PDF, meterpreter DLL, and loader script to the LNK file
 		- zips the resulting LNK file
 	"""
