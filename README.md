@@ -49,7 +49,6 @@ As a result, many of our tools and resources will likely be flagged malicious by
 
 As a precaution, you should not perform these labs on any system that contains sensitive data. Additionally, you should never use capabilities and/or techniques taught in this course without first obtaining explicit written permission from the system/network owner(s).
 
-
 ## :speaking_head: Support MITRE ATT&CK Defender
 
 ---
@@ -64,7 +63,7 @@ Some ways you can help include:
 - Tweeting about MITRE ATT&CK Defender on your Twitter
 - [Get certified](https://mad-subscriptions.mitre-engenuity.org/eWeb/DynamicPage.aspx?Action=Add&ObjectKeyFROM=1A83491A-9853-4C87-86A4-F7D95601C2E2&WebCode=ProdDetailAdd&DoNotSave=yes&ParentObject=CentralizedOrderEntry&ParentDataObject=Invoice%20Detail&ivd_formkey=69202792-63d7-4ba2-bf4e-a0da41270555&ivd_cst_key=00000000-0000-0000-0000-000000000000&ivd_cst_ship_key=00000000-0000-0000-0000-000000000000&ivd_prc_prd_key=9ea6b3e3-b7a9-40f1-b101-8facae969026)!
 
-## :clipboard: Notice 
+## :clipboard: Notice
 
 Copyright 2021 MITRE Engenuity. Approved for public release. Document number MAD013.
 
@@ -72,7 +71,7 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
 
 http://www.apache.org/licenses/LICENSE-2.0 
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License. 
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
 This project makes use of ATT&CK®
 
