@@ -8,7 +8,7 @@ if ($env:COMPUTERNAME -ne "DC01") {
 
     #Setting up autologon to make setup process simpler and easier for students
     Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide your password here. Otherwise, simply leave blank and hit enter."
-    $password = Read-Host "Login Password:"
+    $password = Read-Host "Login Password"
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultUserName' -Type String -Value "Administrator";
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
