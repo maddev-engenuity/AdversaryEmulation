@@ -59,7 +59,7 @@ If you found a defect that is preventing you from completing the lab exercises, 
 
 5. We welcome recommended solutions and/or corrective pull requests.
 
-## :beetle: Have a Bug-Fix
+## :beetle: Have a Bug-Fix?
 
 ---
 
