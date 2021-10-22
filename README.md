@@ -4,13 +4,41 @@ MITRE ATT&CK Defender is the cybersecurity community’s new ATT&CK training and
 
 This repository contains the materials required for completing hands-on labs taught in the MITRE ATT&CK Defender ATT&CK Adversary Emulation course.
 
-## :computer: Usage
+## :computer: Instructions
 
 ---
 
-The `labs` folder contains written lab guides and other resources needed to complete each lab.
+The following instructions describe how to install and configure a virtual environment needed to execute the MITRE ATT&CK Defender Adversary Emulation Fundamentals labs.
 
-The `vm_setup_scripts` folder contains  scripts that can be used to automatically configure your virtual machine environment for the course labs.
+0. Download and install a virtual machine hypervisor such as the freely available [VirtualBox](https://www.virtualbox.org).
+
+1. Download and install two operating systems in your virtual machine hypervisor:
+    a. [Kali Linux](https://www.kali.org)
+
+    b. [Windows Server 2019 - Trial Version](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019)
+
+2. From both your Kali and Windows Server 2019 virtual machines, download the latest [Adversary Emulation Fundamentals release folder](https://github.com/maddev-engenuity/AdversaryEmulation/releases).
+
+3. Unzip the AdversaryEmulation folder.
+
+4. Execute the automated setup script for your VMs:
+
+    a. Kali:
+
+    ```bash
+    cd AdversaryEmulation/
+    sudo ./setup_kali.sh
+    ``` 
+
+    b. Windows Server 2019
+    
+    ```pwsh
+    # Open powershell.exe as Administrator
+    cd AdversaryEmulation/
+    .\setup-windows.ps1
+    ```
+
+5. You should be ready to execute the course labs after succesfully running the setup scripts. Access the written lab guides from the `AdversaryEmulation/labs` folder.
 
 ## :gear: Technical Issues
 
@@ -28,7 +56,7 @@ If you found a defect that is preventing you from completing the lab exercises, 
 
 4. Include pertinent screenshots, logs, and/or error messages.
 
-5. We welcome reccomended solutions and/or corrective pull requests.
+5. We welcome recommended solutions and/or corrective pull requests.
 
 ## :beetle: Have a Bug-Fix
 
