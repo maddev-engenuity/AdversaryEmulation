@@ -6,9 +6,9 @@ if ($env:COMPUTERNAME -ne "DC01") {
     #Disable defender, add setup script to registry run key, and rename computer.
     powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\disable-defender.ps1;
 
-    Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Administrator\AdversaryEmulation\vm-setup-scripts\lab1\setup-dc.ps1"
+    Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\setup-dc.ps1"
     Write-Host "[i] Set registry Run key for this script. Script will automatically complete with intermittent reboots"
-
+    Start-Sleep -Seconds 3
     powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\rename-dc.ps1;
 } 
 #Step 2
@@ -27,6 +27,8 @@ else {
     #Remove setup script from registry Run key
     Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC'
     Write-Host "[i] Registry Run key for this script removed. Setup is now complete. Server will reboot for clean start."
+    Start-Sleep -Seconds 3
+    Restart-Computer -Force
 }
 
 
