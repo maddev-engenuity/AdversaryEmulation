@@ -13,6 +13,7 @@ The following instructions describe how to install and configure a virtual envir
 0. Download and install a virtual machine hypervisor such as the freely available [VirtualBox](https://www.virtualbox.org).
 
 1. Download and install two operating systems in your virtual machine hypervisor:
+
     a. [Kali Linux](https://www.kali.org)
 
     b. [Windows Server 2019 - Trial Version](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019)
@@ -58,7 +59,7 @@ If you found a defect that is preventing you from completing the lab exercises, 
 
 5. We welcome recommended solutions and/or corrective pull requests.
 
-## :beetle: Have a Bug-Fix
+## :beetle: Have a Bug-Fix?
 
 ---
 
