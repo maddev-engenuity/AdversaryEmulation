@@ -6,7 +6,7 @@ $ErrorActionPreference = "Stop"
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.png) -or -not (Test-Path C:\Users\Public\Pictures\target_background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public"
     Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-tools.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
-    Copy-Item .\taget-background.png -DestinationPath C:\Users\Public\Pictures\target_background.png;
+    Copy-Item .\taget-background.png -Destination C:\Users\Public\Pictures\target_background.png;
 }
 
 #Step 1
