@@ -1,10 +1,17 @@
 #We want to stop the setup process on any error, as that suggests a breaking condition
 $ErrorActionPreference = "Stop"
 
+#Step 0
+#Copy scripts to C:\Users\Public if they're not already there
+if (-not Test-Path C:\Users\Public\setup-dc.ps1) {
+    Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,\download-tools.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
+    Copy-Item .\taget-background.png -DestinationPath C:\Users\Public\Pictures\target_background.png;
+}
+
 #Step 1
 if ($env:COMPUTERNAME -ne "DC01") {
     #Disable defender, add setup script to registry run key, and rename computer.
-    powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\disable-defender.ps1;
+    powershell -ep bypass C:\Users\Public\disable-defender.ps1;
 
     #Setting up autologon to make setup process simpler and easier for students
     Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide your password here. Otherwise, simply leave blank and hit enter."
@@ -13,10 +20,10 @@ if ($env:COMPUTERNAME -ne "DC01") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\setup-dc.ps1"
+    Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Public\setup-dc.ps1"
     Write-Host "[i] Set registry Run key for this script. Script will automatically complete with intermittent reboots"
     Start-Sleep -Seconds 3
-    powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\rename-dc.ps1;
+    powershell -ep bypass C:\Users\Public\rename-dc.ps1;
 } 
 #Step 2
 elseif ((Get-WmiObject -Namespace root\cimv2 -Class Win32_ComputerSystem).Domain -ne "MAD.local") {
@@ -24,17 +31,17 @@ elseif ((Get-WmiObject -Namespace root\cimv2 -Class Win32_ComputerSystem).Domain
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultDomainName' -Type String -Value "MAD";
 
     #Create MAD.local domain. Server will restart after domain is created
-    powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\create-domain.ps1;
+    powershell -ep bypass C:\Users\Public\create-domain.ps1;
 
     Restart-Computer -Force;
 }
 #Step 3
 else {
     #Add domain entities (computer accounts, organizational units, and user accounts)
-    powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\add-domain-entities.ps1;
+    powershell -ep bypass C:\Users\Public\add-domain-entities.ps1;
 
     #Download needed tools for emulation procedure
-    powershell -ep bypass C:\Users\Administrator\AdversaryEmulation\vm_setup_scripts\lab1\download-tools.ps1;
+    powershell -ep bypass C:\Users\Public\download-tools.ps1;
 
     #Remove setup script from registry Run key
     Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC'
