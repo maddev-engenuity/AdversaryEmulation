@@ -1,10 +1,10 @@
-# MAD ATT&CK Adversary Emulation VM Setup Instructions
+# MAD Adversary Emulation VM Setup Instructions
 
 Some of the hands-on labs in this course require a specific lab environment in order for students to successfully complete them. This folder contains scripts and supplemental files for setting up the `attacker` and `target` virtual machines used in those labs.
 
 Virtual Machines must first be installed according to the requirements below, and then the included setup scripts can be executed to complete the configuration of the machines.
 
-## Install Kali 10 VM
+## Install Kali Linux VM
 
 1. Install a Kali Linux VM in the hypervisor of your choice.
 
@@ -15,7 +15,7 @@ OS: Latest version of Kali Linux (64-bit)
 CPU: 2 core CPU
 RAM: 8 GB
 Disk: 50 GB
-Networking: Should be able to ping the Windows 10 VM and reach the Internet
+Networking: Should be able to ping the Windows Server 2019 VM and reach the Internet
 ```
 
 2. During OS installation, configure the hostname and username; accept default values for other options.
@@ -47,14 +47,14 @@ sudo ./setup_kali_VM.sh
 
 ---
 
-## Install Windows 10 VM
+## Install Windows Server 2019 VM
 
-1. Install a Windows 10 VM in the hypervisor of your choice.
+1. Install a Windows Server 2019 VM in the hypervisor of your choice.
  
 We reccomend configuring the VM with the following specs:
 
 ```
-OS: Windows 10 Professional (64-bit)
+OS: Windows Server 2019 (64-bit)
 CPU: 2 core CPU
 RAM: 8 GB
 Disk: 50 GB
