@@ -33,8 +33,6 @@ elseif ((Get-WmiObject -Namespace root\cimv2 -Class Win32_ComputerSystem).Domain
 
     #Create MAD.local domain. Server will restart after domain is created
     powershell -ep bypass C:\Users\Public\create-domain.ps1;
-
-    Restart-Computer -Force;
 }
 #Step 3
 else {
