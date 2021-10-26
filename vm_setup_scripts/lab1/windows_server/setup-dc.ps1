@@ -44,6 +44,9 @@ else {
     #Download needed tools for emulation procedure
     powershell -ep bypass C:\Users\Public\download-tools.ps1;
 
+    #Set Windows wallpaper
+    powershell -ep bypass C:\Users\Public\set-windows-wallpaper.ps1
+
     #Remove setup script from registry Run key
     Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC'
     Write-Host "[i] Registry Run key for this script removed."
