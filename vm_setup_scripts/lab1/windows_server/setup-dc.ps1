@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 #Copy scripts to C:\Users\Public if they're not already there
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.ps1) -or -not (Test-Path C:\Users\Public\Pictures\target-background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public";
-    Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-executables.ps1,.\install-detection-tools,.\hidden-files,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
+    Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-executables.ps1,.\install-detection-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
     Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;
 }
 
