@@ -11,7 +11,7 @@ if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\P
 }
 
 #Step 1
-if ($env:COMPUTERNAME -ne "DC01") {
+if ($env:COMPUTERNAME -ne "targetDC") {
     #Disable defender, add setup script to registry run key, and rename computer.
     powershell -ep bypass C:\Users\Public\disable-defender.ps1;
 
