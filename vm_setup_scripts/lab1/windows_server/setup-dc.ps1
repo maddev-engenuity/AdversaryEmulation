@@ -43,18 +43,20 @@ elseif ((Get-WmiObject -Namespace root\cimv2 -Class Win32_ComputerSystem).Domain
 }
 else {
     #Step 3
-    #We need to add the new domain user and configure things under their account, so we start by checking if that account exists
-    #Waiting for AD services to start up after server restart
+    #Waiting for AD services to start up after server restart. If AD services are not up, Get-ADUser should error out
+    Write-Host "[i] Waiting for AD services to start"
     $AD_enabled = $false;
     while (-not ($AD_enabled)) {
         try {
-            Add-WindowsFeature RSAT-AD-PowerShell;
+            Get-ADUser Administrator;
             $AD_enabled = $true;
         } catch {
+            Write-Host "[i] Still waiting..."
             Start-Sleep -Seconds 5;
         }
     }
     
+    #We need to add the new domain user and configure things under their account, so we start by checking if that account exists
     $userobj = $(try {Get-ADUser "madAdmin"} catch {$Null});
     if ($userobj -eq $Null) {
         #Add domain entities (computer accounts, organizational units, and user accounts)
