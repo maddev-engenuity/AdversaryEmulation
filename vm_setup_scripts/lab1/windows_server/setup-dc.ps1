@@ -47,6 +47,7 @@ else {
         try {
             Get-ADUser Administrator;
             $AD_enabled = $true;
+            Write-Host "[+] AD Services started, proceeding"
         } catch {
             Write-Host "[i] Still waiting..."
             Start-Sleep -Seconds 5;
