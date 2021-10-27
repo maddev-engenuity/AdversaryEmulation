@@ -15,7 +15,7 @@ if ($env:COMPUTERNAME -ne "DC01") {
     powershell -ep bypass C:\Users\Public\disable-defender.ps1;
 
     #Setting up autologon to make setup process simpler and easier for students
-    Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide your password here. Otherwise, simply leave blank and hit enter.";
+    Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide the Administrator user password that you configured here. Otherwise, simply leave blank and hit enter.";
     $password = Read-Host "Login Password";
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultUserName' -Type String -Value "Administrator";
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
