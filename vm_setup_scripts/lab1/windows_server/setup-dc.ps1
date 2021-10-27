@@ -27,9 +27,6 @@ if ($env:COMPUTERNAME -ne "DC01") {
     Register-ScheduledTask -User 'Administrator' -RunLevel Highest -TaskName 'SetupDC' -Action $action -Trigger $trigger;
     Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set"
 
-    # Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Public\setup-dc.ps1";
-    # Write-Host "[i] Set registry Run key for this script. Script will automatically complete with intermittent reboots";
-
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
 } 
@@ -77,15 +74,21 @@ else {
     }
     #Step 4
     else {
-        #Download needed tools for emulation procedure
-        powershell -ep bypass C:\Users\Public\download-tools.ps1;
+        #Download needed executables for emulation procedure
+        Write-Host "[i] Downloaded executables for emulation procedure"
+        powershell -ep bypass C:\Users\Public\download-emulation-executables.ps1;
 
-        #Set Windows wallpaper for all users
+        #Install tools for detections
+        Write-Host "[i] Installing tools for detections"
+        powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
+
+        #Make hidden files and extensions visible in Explorer
+        Write-Host "[i] Making hidden files and extensions visible in Explorer"
+        powershell -ep bypass C:\Users\Public\hidden-files.ps1;
+
+        #Set Windows wallpaper
+        Write-Host "[i] Setting desktop background"
         powershell -ep bypass C:\Users\Public\set-windows-wallpaper.ps1;
-
-        #Remove setup script from registry Run key
-        # Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC';
-        # Write-Host "[i] Registry Run key for this script removed.";
 
         #Remove SetupDC scheduled task
         Unregister-ScheduledTask -TaskName 'SetupDC' -Confirm:$false;
