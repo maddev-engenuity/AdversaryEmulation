@@ -21,8 +21,15 @@ if ($env:COMPUTERNAME -ne "DC01") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Public\setup-dc.ps1";
-    Write-Host "[i] Set registry Run key for this script. Script will automatically complete with intermittent reboots";
+    #Create Scheduled Task to continue setup process after reboots
+    $action = New-ScheduledTaskAction -Execute "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-noexit -ep bypass C:\Users\Public\setup-dc.ps1";
+    $trigger = New-ScheduledTaskTrigger -AtLogon -User 'Administrator';
+    Register-ScheduledTask -User 'Administrator' -RunLevel Highest -TaskName 'SetupDC' -Action $action -Trigger $trigger;
+    Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set"
+
+    # Set-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC' -Value "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe -noexit -ep bypass C:\Users\Public\setup-dc.ps1";
+    # Write-Host "[i] Set registry Run key for this script. Script will automatically complete with intermittent reboots";
+
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
 } 
@@ -42,10 +49,16 @@ else {
         #Add domain entities (computer accounts, organizational units, and user accounts)
         powershell -ep bypass C:\Users\Public\add-domain-entities.ps1;
 
+        #Modify scheduled task to complete as madAdmin user in elevated context
+        $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin'
+        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -RunLevel Highest -Trigger $trigger
+        Write-Host "[i] Modified SetupDC scheduled task to complete as madAdmin";
+
         #Changing autologon credentials to new user
         Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultUserName' -Type String -Value "madAdmin";
         Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value "ATT&CK";
         Write-Host "[i] Changed autologon creds to MAD\madAdmin";
+
         Start-Sleep -Seconds 3;
         Restart-Computer -Force;
     }
@@ -58,8 +71,12 @@ else {
         powershell -ep bypass C:\Users\Public\set-windows-wallpaper.ps1;
 
         #Remove setup script from registry Run key
-        Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC';
-        Write-Host "[i] Registry Run key for this script removed.";
+        # Remove-ItemProperty "HKLM:\Software\Microsoft\Windows\CurrentVersion\Run" -Name 'SetupDC';
+        # Write-Host "[i] Registry Run key for this script removed.";
+
+        #Remove SetupDC scheduled task
+        Unregister-ScheduledTask -TaskName 'SetupDC';
+        Write-Host "[i] Deleted SetupDC scheduled task";
 
         #Remove Autologon creds
         Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultUserName' -Type String -Value "";
