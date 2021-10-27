@@ -51,7 +51,7 @@ else {
 
         #Modify scheduled task to complete as madAdmin user in elevated context
         $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin'
-        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -RunLevel Highest -Trigger $trigger
+        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -Trigger $trigger
         Write-Host "[i] Modified SetupDC scheduled task to complete as madAdmin";
 
         #Changing autologon credentials to new user
