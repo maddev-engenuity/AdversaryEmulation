@@ -88,7 +88,7 @@ else {
         # Write-Host "[i] Registry Run key for this script removed.";
 
         #Remove SetupDC scheduled task
-        Unregister-ScheduledTask -TaskName 'SetupDC' -Force;
+        Unregister-ScheduledTask -TaskName 'SetupDC' -Confirm:$false;
         Write-Host "[i] Deleted SetupDC scheduled task";
 
         #Remove Autologon creds
