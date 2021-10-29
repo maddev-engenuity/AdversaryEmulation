@@ -28,15 +28,35 @@ The following instructions describe how to install and configure a virtual envir
 
     ```bash
     cd AdversaryEmulation/vm_setup_scripts/
-    sudo ./setup_kali_VM.sh
+    sudo ./setup-kali-vm.sh
     ``` 
+
+    After installation completes, the server will reboot.
+    
+    Log in with the following credentials:
+
+    ```
+    Username: attacker
+    Password: ATT&CK
+    ```
+
+    Setup will complete once you open a terminal window within the desktop session.
 
     b. Windows Server 2019
     
     ```pwsh
     # Open powershell.exe as Administrator
     cd AdversaryEmulation/vm_setup_scripts/
-    .\setup_windows10_VM.ps1
+    .\setup-dc.ps1
+    ```
+
+    The setup process will take a few reboots to complete. When the script prompts you for a password, you may choose to provide the login password you created for the initial Administrator user. This will allow the reboots and logins for the setup to occur without user interaction.
+
+    Once the setup process completes, log in with the following credentials:
+
+    ```
+    Username: madAdmin
+    Password: ATT&CK
     ```
 
 6. You should be ready to execute the course labs after succesfully running the setup scripts. Access the written lab guides from the `AdversaryEmulation/labs` folder.
