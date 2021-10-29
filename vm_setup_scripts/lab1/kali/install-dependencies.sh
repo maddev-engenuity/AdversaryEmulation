@@ -1,3 +1,4 @@
+#!/bin/bash
 echo "[i] Installing Pip3"
 apt install python3-pip
 

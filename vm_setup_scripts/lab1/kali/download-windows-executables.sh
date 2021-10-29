@@ -1,3 +1,4 @@
+#!/bin/bash
 exe_directory="/home/attacker/fin6-windows-tools"
 
 #Create directory to store executables, as well as temporary directory to download files

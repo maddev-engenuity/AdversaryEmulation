@@ -7,14 +7,7 @@ then echo "Please run as root"
 fi
 
 #Configure attacker user
-if id attacker &>/dev/null; then
-    echo -e "ATT&CK\nATT&CK" | passwd attacker
-else
-    useradd -m attacker
-    echo "attacker:ATT&CK" | chpasswd
-fi
-usermod -a -G sudoers
-echo "[i] attacker user configured"
+./configure-attacker-user.sh
 
 #Download Windows Tools
 su -c "./download-windows-tools.sh" attacker
