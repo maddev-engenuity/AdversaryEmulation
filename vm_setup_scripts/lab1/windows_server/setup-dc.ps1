@@ -75,10 +75,6 @@ else {
     }
     #Step 4
     else {
-        #Download needed executables for emulation procedure
-        Write-Host "[i] Downloaded executables for emulation procedure"
-        powershell -ep bypass C:\Users\Public\download-emulation-executables.ps1;
-
         #Install tools for detections
         Write-Host "[i] Installing tools for detections"
         powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
