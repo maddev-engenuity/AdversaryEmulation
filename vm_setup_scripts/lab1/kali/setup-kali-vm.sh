@@ -6,7 +6,8 @@ then echo "Please run as root"
     exit
 fi
 
-$pwd=$(pwd)
+pwd=$(pwd)
+echo $pwd
 
 #Configure attacker user
 ./configure-attacker-user.sh
@@ -15,16 +16,16 @@ $pwd=$(pwd)
 su -c "$pwd/download-windows-tools.sh" attacker
 
 #Install dependencies on kali
-su -c "$pwd/install-dependencies.sh" attacker
+./install-dependencies.sh
 
 #Enable ssh service
 systemctl enable ssh
 systemctl start ssh
 echo "[i] ssh service enabled"
 
-#Set desktop background for attacker
-su -c "$pwd/set-kali-background.sh" attacker
-echo "[i] Desktop background set for attacker user"
+#Set desktop wallpaper for attacker
+su -c "$pwd/set-kali-wallpaper.sh" attacker
+echo "[i] Desktop wallpaper set for attacker user"
 
 #Rename computer
 echo attackerVM > /etc/hostname
