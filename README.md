@@ -27,7 +27,7 @@ The following instructions describe how to install and configure a virtual envir
     a. Kali:
 
     ```bash
-    cd AdversaryEmulation/vm_setup_scripts/
+    cd AdversaryEmulation/vm_setup_scripts/kali
     sudo ./setup-kali-vm.sh
     ``` 
 
@@ -46,7 +46,7 @@ The following instructions describe how to install and configure a virtual envir
     
     ```pwsh
     # Open powershell.exe as Administrator
-    cd AdversaryEmulation/vm_setup_scripts/
+    cd AdversaryEmulation\vm_setup_scripts\windows_server\
     .\setup-dc.ps1
     ```
 
