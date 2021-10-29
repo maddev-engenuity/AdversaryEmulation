@@ -47,7 +47,7 @@ The following instructions describe how to install and configure a virtual envir
     ```pwsh
     # Open powershell.exe as Administrator
     cd AdversaryEmulation/vm_setup_scripts/
-    .\setup_dc.ps1
+    .\setup-dc.ps1
     ```
 
     The setup process will take a few reboots to complete. When the script prompts you for a password, you may choose to provide the login password you created for the initial Administrator user. This will allow the reboots and logins for the setup to occur without user interaction.
