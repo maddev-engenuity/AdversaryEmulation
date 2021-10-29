@@ -27,8 +27,13 @@ echo "[i] ssh service enabled"
 ./set-kali-wallpaper.sh
 echo "[i] Desktop wallpaper set for attacker user"
 
+#Copy repo to attacker user's home folder
+cp -r ../../../../AdversaryEmulation /home/attacker/AdversaryEmulation
+chown -R attacker:attacker /home/attacker/AdversaryEmulation
+
 #Rename computer
 echo attackerVM > /etc/hostname
+sed -i 's/kali/attackerVM/g' /etc/hosts
 
 #Reboot system
 echo "Setup complete. The system will reboot now to finish the process."
