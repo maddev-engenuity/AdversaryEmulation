@@ -24,8 +24,8 @@ systemctl start ssh
 echo "[i] ssh service enabled"
 
 #Set desktop wallpaper for attacker
-./set-kali-wallpaper.sh
-echo "[i] Desktop wallpaper set for attacker user"
+echo /home/attacker/AdversaryEmulation/vm_setup_scripts/lab1/kali/set-kali-wallpaper.sh >> /home/attacker/.profile
+echo "[i] Desktop wallpaper will be set for attacker user when they login"
 
 #Copy repo to attacker user's home folder
 cp -r ../../../../AdversaryEmulation /home/attacker/AdversaryEmulation
