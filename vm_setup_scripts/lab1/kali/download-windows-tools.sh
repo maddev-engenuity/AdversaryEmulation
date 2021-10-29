@@ -10,7 +10,7 @@ unzip $exe_directory/downloads/adfind.zip -d $exe_directory/downloads/
 mv $exe_directory/downloads/AdFind.exe $exe_directory/
 
 #Download plink.exe
-wget https://the.earth.li/~sgtatham/putty/latest/w64/plink.exe -P $exe_directory/
+curl https://the.earth.li/~sgtatham/putty/0.76/w64/plink.exe --output $exe_directory/plink.exe
 
 #download 7zip.exe
 wget https://www.7-zip.org/a/7z1900-x64.exe -P $exe_directory/downloads/
