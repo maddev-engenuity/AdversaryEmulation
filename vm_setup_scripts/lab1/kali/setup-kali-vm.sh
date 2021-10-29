@@ -24,7 +24,7 @@ systemctl start ssh
 echo "[i] ssh service enabled"
 
 #Set desktop wallpaper for attacker
-su -c "$pwd/set-kali-wallpaper.sh" attacker
+./set-kali-wallpaper.sh
 echo "[i] Desktop wallpaper set for attacker user"
 
 #Rename computer
