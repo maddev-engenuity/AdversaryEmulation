@@ -6,5 +6,5 @@ else
     useradd -m attacker
     echo "attacker:ATT&CK" | chpasswd
 fi
-usermod -a -G sudoers
+usermod -a attacker -G sudo
 echo "[i] attacker user configured"
