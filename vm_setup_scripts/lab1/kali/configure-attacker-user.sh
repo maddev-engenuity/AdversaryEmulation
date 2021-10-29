@@ -3,7 +3,7 @@
 if id attacker &>/dev/null; then
     echo -e "ATT&CK\nATT&CK" | passwd attacker
 else
-    useradd -m attacker
+    useradd -m -s /bin/bash attacker
     echo "attacker:ATT&CK" | chpasswd
 fi
 usermod -a attacker -G sudo
