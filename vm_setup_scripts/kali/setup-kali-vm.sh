@@ -24,7 +24,7 @@ systemctl start ssh
 echo "[i] ssh service enabled"
 
 #Copy repo to attacker user's home folder
-cp -r ../../../../AdversaryEmulation /home/attacker/AdversaryEmulation
+cp -r ../../../AdversaryEmulation /home/attacker/AdversaryEmulation
 chown -R attacker:attacker /home/attacker/AdversaryEmulation
 
 #Set desktop wallpaper for attacker
