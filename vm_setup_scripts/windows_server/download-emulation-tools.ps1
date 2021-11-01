@@ -1,10 +1,10 @@
 #Download adfind to Windows directory
 $postParams = @{B1='Download+Now';download="AdFind.zip";email=''};
 Invoke-WebRequest -Uri http://www.joeware.net/downloads/dl.php -Method POST -Body $postParams -OutFile C:\Users\Public\adfind.zip;
-Expand-Archive -Path C:\Users\Public\adfind.zip -DestinationPath C:\Users\Public;
-Move-Item -Path C:\Users\Public\AdFind.exe -DestinationPath C:\Users\Windows;
-Remove-Item -Path C:\Users\Public\adfind.zip;
-Remove-Item -Path C:\Users\Public\adcsv.pl;
+Expand-Archive -Path C:\Users\Public\adfind.zip -DestinationPath C:\Users\Public -Force;
+Move-Item -Path C:\Users\Public\AdFind.exe -Destination C:\Windows\AdFind.exe -Force;
+Remove-Item -Path C:\Users\Public\adfind.zip -Force;
+Remove-Item -Path C:\Users\Public\adcsv.pl -Force;
 Write-Host "[+] Downloaded AdFind to Windows directory"
 
 #Download plink to Windows directory
@@ -29,19 +29,20 @@ try {
 Write-Host "[+] Downloaded plink to Windows directory";
 
 #Copy 7za to Windows directory
-Copy-Item -Path ..\..\..\external\7zip-extra\7za.exe C:\Windows\7za.exe;
+Copy-Item -Path ..\..\..\external\7zip-extra\7za.exe -Destination C:\Windows\7za.exe -Force;
 Write-Host "[i] Copied 7za to Windows directory";
 
 #Download WCE to Windows directory
 Invoke-WebRequest -Uri https://www.ampliasecurity.com/research/wce_v1_42beta_x64.zip -OutFile C:\Users\Public\wce.zip;
-Expand-Archive -Path C:\Users\Public\wce.zip -Destination Path C:\Users\Public;
-Move-Item -Path C:\Users\wce\wce.exe -DestinationPath C:\Windows\wce.exe;
-Remove-Item C:\Users\Public\wce.zip;
+Expand-Archive -Path C:\Users\Public\wce.zip -DestinationPath C:\Users\Public\wce -Force;
+Move-Item -Path C:\Users\Public\wce\wce.exe -Destination C:\Windows\wce.exe -Force;
+Remove-Item C:\Users\Public\wce.zip -Force;
 Remove-Item -Recurse -Force C:\Users\Public\wce;
 Write-Host "[i] Downloaded WCE to Windows directory";
 
 #Download PowerSploit
 Invoke-WebRequest -Uri https://github.com/PowerShellMafia/PowerSploit/archive/refs/heads/master.zip -OutFile C:\Users\Public\PowerSploit.zip
-Expand-Archive -Path C:\Users\Public\PowerSploit.zip -DestinationPath C:\Users\Public\;
-Remove-Item C:\Users\Public\PowerSploit.zip;
+Expand-Archive -Path C:\Users\Public\PowerSploit.zip -DestinationPath C:\Users\Public\ -Force;
+Remove-Item C:\Users\Public\PowerSploit.zip -Force;
+Move-Item -Path C:\Users\Public\PowerSploit-master -Destination C:\Users\Public\PowerSploit -Force;
 Write-Host "[i] Downloaded PowerSploit to C:\Users\Public";
