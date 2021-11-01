@@ -29,7 +29,7 @@ try {
 Write-Host "[+] Downloaded plink to Windows directory";
 
 #Copy 7za to Windows directory
-Copy-Item -Path ..\..\..\external/7zip/7za.exe C:\Windows\7za.exe;
+Copy-Item -Path ..\..\..\external\7zip-extra\7za.exe C:\Windows\7za.exe;
 Write-Host "[i] Copied 7za to Windows directory";
 
 #Download WCE to Windows directory
