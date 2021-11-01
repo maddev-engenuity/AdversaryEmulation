@@ -12,9 +12,6 @@ echo $pwd
 #Configure attacker user
 ./configure-attacker-user.sh
 
-#Download Windows Tools
-su -c "$pwd/download-windows-tools.sh" attacker
-
 #Install dependencies on kali
 ./install-dependencies.sh
 
