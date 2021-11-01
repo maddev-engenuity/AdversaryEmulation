@@ -59,6 +59,8 @@ The following instructions describe how to install and configure a virtual envir
     Password: ATT&CK
     ```
 
+    __Note:__ This process can take more than 10 minutes to complete.
+
 6. You should be ready to execute the course labs after succesfully running the setup scripts. Access the written lab guides from the `AdversaryEmulation/labs` folder.
 
 ## :gear: Technical Issues
