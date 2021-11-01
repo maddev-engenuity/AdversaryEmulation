@@ -25,7 +25,7 @@ cp -r ../../../AdversaryEmulation /home/attacker/AdversaryEmulation
 chown -R attacker:attacker /home/attacker/AdversaryEmulation
 
 #Set desktop wallpaper for attacker
-echo /home/attacker/AdversaryEmulation/vm_setup_scripts/lab1/kali/set-kali-wallpaper.sh >> /home/attacker/.bashrc
+echo /home/attacker/AdversaryEmulation/vm_setup_scripts/kali/set-kali-wallpaper.sh >> /home/attacker/.bashrc
 echo "[i] Desktop wallpaper will be set for attacker user when they login"
 
 #Rename computer
