@@ -34,5 +34,8 @@ sed -i 's/kali/attackerVM/g' /etc/hosts
 
 #Reboot system
 echo "Setup complete. The system will reboot now to finish the process."
+echo "Login with the following credentials:"
+echo "    Username: attacker"
+echo "    Password: ATT&CK\n"
 read -n 1 -s -r -p "Press any key to continue."
 reboot now
