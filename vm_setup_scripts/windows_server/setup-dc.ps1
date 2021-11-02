@@ -25,7 +25,7 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     $trigger = New-JobTrigger -AtLogon -User 'Administrator';
     $options = New-ScheduledJobOption -RunElevated -ContinueIfGoingOnBattery -StartIfOnBattery -WakeToRun;
     $script_path = 'C:\Users\Public\setup-dc.ps1';
-    Register-ScheduledJob -Name 'SetupDC' -ScriptBlock {powershell -noexit -ep bypass C:\Users\Public\setup-dc.ps1} -ScheduledJobOption $options -Trigger $trigger;
+    Register-ScheduledJob -Name 'SetupDC' -ScriptBlock {Start-Process -WindowStyle 'Maximized' C:\Users\Public\setup-dc.ps1} -ScheduledJobOption $options -Trigger $trigger;
     Get-ScheduledTask -TaskName 'SetupDC' | Set-ScheduledTask -User 'Administrator';
     Write-Host "[i] Scheduled Job SetupDC to continue setup as Administrator set"
 
