@@ -21,11 +21,13 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    #Create Scheduled Task to continue setup process after reboots
-    $action = New-ScheduledTaskAction -Execute "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-noexit -ep bypass C:\Users\Public\setup-dc.ps1";
-    $trigger = New-ScheduledTaskTrigger -AtLogon -User 'Administrator';
-    Register-ScheduledTask -User 'Administrator' -RunLevel Highest -TaskName 'SetupDC' -Action $action -Trigger $trigger;
-    Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set"
+    #Create Scheduled Job to continue setup process after reboots
+    $trigger = New-JobTrigger -AtLogon -User 'Administrator';
+    $options = New-ScheduledJobOption -RunElevated -ContinueIfGoingOnBattery -StartIfOnBattery -WakeToRun;
+    $script_path = 'C:\Users\Public\setup-dc.ps1';
+    Register-ScheduledJob -Name 'SetupDC' -FilePath $script_path -ScheduledJobOption $options -Trigger $trigger;
+    Get-ScheduledTask -TaskName 'SetupDC' | Set-ScheduledTask -User 'Administrator';
+    Write-Host "[i] Scheduled Job SetupDC to continue setup as Administrator set"
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
@@ -61,8 +63,9 @@ else {
         powershell -ep bypass C:\Users\Public\add-domain-entities.ps1;
 
         #Modify scheduled task to complete as madAdmin user in elevated context
-        $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin'
-        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -Trigger $trigger
+        $trigger = New-JobTrigger -AtLogon -User 'madAdmin';
+        Get-ScheduledJob -Name 'SetupDC' | Set-ScheduledJob -Trigger $trigger;
+        Get-ScheduledTask -TaskName 'SetupDC' | Set-ScheduledTask -User 'madAdmin';
         Write-Host "[i] Modified SetupDC scheduled task to complete as madAdmin";
 
         #Changing autologon credentials to new user
