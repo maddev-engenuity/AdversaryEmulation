@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 #Copy scripts to C:\Users\Public if they're not already there
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.ps1) -or -not (Test-Path C:\Users\Public\Pictures\target-background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public";
-    Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-tools.ps1,.\install-detection-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
+    Copy-Item .\setup-dc.ps1,.\SetupDC.xml,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-tools.ps1,.\install-detection-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
     Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;
 }
 
@@ -13,7 +13,6 @@ if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\P
 if ($env:COMPUTERNAME -ne "targetDC") {
     #Disable defender, add setup script to registry run key, and rename computer.
     powershell -ep bypass C:\Users\Public\disable-defender.ps1;
-
     #Setting up autologon to make setup process simpler and easier for students
     Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide the Administrator user password that you configured here. Otherwise, simply leave blank and hit enter.";
     $password = Read-Host "Login Password";
@@ -21,13 +20,12 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    #Create Scheduled Job to continue setup process after reboots
-    $trigger = New-JobTrigger -AtLogon -User 'Administrator';
-    $options = New-ScheduledJobOption -RunElevated -ContinueIfGoingOnBattery -StartIfOnBattery -WakeToRun;
-    $script_path = 'C:\Users\Public\setup-dc.ps1';
-    Register-ScheduledJob -Name 'SetupDC' -FilePath $script_path -ScheduledJobOption $options -Trigger $trigger;
-    Get-ScheduledTask -TaskName 'SetupDC' | Set-ScheduledTask -User 'Administrator';
-    Write-Host "[i] Scheduled Job SetupDC to continue setup as Administrator set"
+    #Replace placeholders in Scheduled Task XML file with local values
+    $sid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value;
+    ((Get-Content -Path C:\Users\Public\SetupDC.xml -Raw) -Replace '{WHOAMI}',(whoami)) -Replace '{SID}',$sid | Set-Content -Path C:\Users\Public\SetupDC.xml;
+    #Then use XML file to create Scheduled Task to continue setup process after reboots
+    Register-ScheduledTask -TaskName 'SetupDC' -XML C:\Users\Public\SetupDC.xml;
+    Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
@@ -63,9 +61,8 @@ else {
         powershell -ep bypass C:\Users\Public\add-domain-entities.ps1;
 
         #Modify scheduled task to complete as madAdmin user in elevated context
-        $trigger = New-JobTrigger -AtLogon -User 'madAdmin';
-        Get-ScheduledJob -Name 'SetupDC' | Set-ScheduledJob -Trigger $trigger;
-        Get-ScheduledTask -TaskName 'SetupDC' | Set-ScheduledTask -User 'madAdmin';
+        $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin';
+        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -Trigger $trigger;
         Write-Host "[i] Modified SetupDC scheduled task to complete as madAdmin";
 
         #Changing autologon credentials to new user
