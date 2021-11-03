@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 #Copy scripts to C:\Users\Public if they're not already there
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.ps1) -or -not (Test-Path C:\Users\Public\Pictures\target-background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public";
-    Copy-Item .\setup-dc.ps1,.\SetupDC.xml,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-tools.ps1,.\install-detection-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
+    Copy-Item .\setup-dc.ps1,.\SetupDC.xml,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\install-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
     Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;
 }
 
@@ -28,8 +28,8 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
 
     #Install Emulation and Detection tools
-    Write-Host "[i] Downloading emulation and detection tools"
-    powershell -ep bypass C:\Users\Public\download=tools.ps1;
+    Write-Host "[i] Installing emulation and detection tools"
+    powershell -ep bypass C:\Users\Public\install-tools.ps1;
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
