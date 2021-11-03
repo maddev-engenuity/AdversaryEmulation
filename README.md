@@ -59,6 +59,8 @@ The following instructions describe how to install and configure a virtual envir
     Password: ATT&CK
     ```
 
+    __Note:__ This process can take more than 20 minutes to complete. Chocolatey may seem to be hanging, but unless it errors out, it should complete. You will know that setup is complete when the log in screen is presented for the `madAdmin` user.
+
 6. You should be ready to execute the course labs after succesfully running the setup scripts. Access the written lab guides from the `AdversaryEmulation/labs` folder.
 
 ## :gear: Technical Issues

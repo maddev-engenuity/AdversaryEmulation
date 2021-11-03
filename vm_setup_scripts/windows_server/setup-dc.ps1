@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 #Copy scripts to C:\Users\Public if they're not already there
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.ps1) -or -not (Test-Path C:\Users\Public\Pictures\target-background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public";
-    Copy-Item .\setup-dc.ps1,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\download-emulation-executables.ps1,.\install-detection-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
+    Copy-Item .\setup-dc.ps1,.\SetupDC.xml,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\install-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
     Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;
 }
 
@@ -13,7 +13,6 @@ if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\P
 if ($env:COMPUTERNAME -ne "targetDC") {
     #Disable defender, add setup script to registry run key, and rename computer.
     powershell -ep bypass C:\Users\Public\disable-defender.ps1;
-
     #Setting up autologon to make setup process simpler and easier for students
     Write-Host "[i] If you wish to avoid having to manually login each time the server reboots during the setup process, please provide the Administrator user password that you configured here. Otherwise, simply leave blank and hit enter.";
     $password = Read-Host "Login Password";
@@ -21,11 +20,16 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    #Create Scheduled Task to continue setup process after reboots
-    $action = New-ScheduledTaskAction -Execute "C:\WINDOWS\system32\WindowsPowerShell\v1.0\powershell.exe" -Argument "-noexit -ep bypass C:\Users\Public\setup-dc.ps1";
-    $trigger = New-ScheduledTaskTrigger -AtLogon -User 'Administrator';
-    Register-ScheduledTask -User 'Administrator' -RunLevel Highest -TaskName 'SetupDC' -Action $action -Trigger $trigger;
-    Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set"
+    #Replace username and userID placeholders in Scheduled Task XML file with local values
+    $sid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value;
+    ((Get-Content -Path C:\Users\Public\SetupDC.xml -Raw) -Replace '{WHOAMI}',(whoami)) -Replace '{SID}',$sid | Set-Content -Path C:\Users\Public\SetupDC.xml;
+    #Then use XML file to create Scheduled Task to continue setup process after reboots
+    Register-ScheduledTask -TaskName 'SetupDC' -XML (Get-Content -Path C:\Users\Public\SetupDC.xml | Out-String);
+    Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
+
+    #Install Emulation and Detection tools
+    Write-Host "[i] Installing emulation and detection tools"
+    powershell -ep bypass C:\Users\Public\install-tools.ps1;
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
@@ -61,8 +65,8 @@ else {
         powershell -ep bypass C:\Users\Public\add-domain-entities.ps1;
 
         #Modify scheduled task to complete as madAdmin user in elevated context
-        $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin'
-        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -Trigger $trigger
+        $trigger = New-ScheduledTaskTrigger -AtLogon -User 'madAdmin';
+        Set-ScheduledTask -TaskName 'SetupDC' -User 'madAdmin' -Trigger $trigger;
         Write-Host "[i] Modified SetupDC scheduled task to complete as madAdmin";
 
         #Changing autologon credentials to new user
@@ -75,10 +79,6 @@ else {
     }
     #Step 4
     else {
-        #Install tools for detections
-        Write-Host "[i] Installing tools for detections"
-        powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
-
         #Make hidden files and extensions visible in Explorer
         Write-Host "[i] Making hidden files and extensions visible in Explorer"
         powershell -ep bypass C:\Users\Public\hidden-files.ps1;

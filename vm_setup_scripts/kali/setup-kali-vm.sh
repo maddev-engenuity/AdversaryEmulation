@@ -12,9 +12,6 @@ echo $pwd
 #Configure attacker user
 ./configure-attacker-user.sh
 
-#Download Windows Tools
-su -c "$pwd/download-windows-tools.sh" attacker
-
 #Install dependencies on kali
 ./install-dependencies.sh
 
@@ -24,11 +21,11 @@ systemctl start ssh
 echo "[i] ssh service enabled"
 
 #Copy repo to attacker user's home folder
-cp -r ../../../../AdversaryEmulation /home/attacker/AdversaryEmulation
+cp -r ../../../AdversaryEmulation /home/attacker/AdversaryEmulation
 chown -R attacker:attacker /home/attacker/AdversaryEmulation
 
 #Set desktop wallpaper for attacker
-echo /home/attacker/AdversaryEmulation/vm_setup_scripts/lab1/kali/set-kali-wallpaper.sh >> /home/attacker/.bashrc
+echo /home/attacker/AdversaryEmulation/vm_setup_scripts/kali/set-kali-wallpaper.sh >> /home/attacker/.bashrc
 echo "[i] Desktop wallpaper will be set for attacker user when they login"
 
 #Rename computer
@@ -37,5 +34,8 @@ sed -i 's/kali/attackerVM/g' /etc/hosts
 
 #Reboot system
 echo "Setup complete. The system will reboot now to finish the process."
+echo "Login with the following credentials:"
+echo "    Username: attacker"
+echo -e "    Password: ATT&CK\n"
 read -n 1 -s -r -p "Press any key to continue."
 reboot now
