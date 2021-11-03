@@ -50,3 +50,15 @@ Expand-Archive -Path C:\Users\Public\PowerSploit.zip -DestinationPath C:\Users\P
 Remove-Item C:\Users\Public\PowerSploit.zip -Force;
 Move-Item -Path C:\Users\Public\PowerSploit-master -Destination C:\Users\Public\PowerSploit -Force;
 Write-Host "[i] Downloaded PowerSploit to C:\Users\Public";
+
+#Install SysInternals using Chocolatey
+choco install sysinternals -y;
+Write-Host "[+] Installed SysInternals";
+
+#Install APIMonitor using Chocolatey
+choco install apimonitor -y;
+Write-Host "[+] Installed APIMonitor";
+
+#Install WireShark using Chocolatey
+choco install wireshark -y;
+Write-Host "[+] Installed WireShark";

@@ -27,13 +27,9 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Register-ScheduledTask -TaskName 'SetupDC' -XML (Get-Content -Path C:\Users\Public\SetupDC.xml | Out-String);
     Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
 
-    #Install Emulation tools
-    Write-Host "[i] Downloading emulation tools"
-    powershell -ep bypass C:\Users\Public\download-emulation-tools.ps1;
-
-    #Install tools for detections
-    Write-Host "[i] Installing tools for detections"
-    powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
+    #Install Emulation and Detection tools
+    Write-Host "[i] Downloading emulation and detection tools"
+    powershell -ep bypass C:\Users\Public\download=tools.ps1;
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
