@@ -20,12 +20,20 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultPassword' -Type String -Value $password;
     New-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon' -Type String -Value "1";
 
-    #Replace placeholders in Scheduled Task XML file with local values
+    #Replace username and userID placeholders in Scheduled Task XML file with local values
     $sid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value;
     ((Get-Content -Path C:\Users\Public\SetupDC.xml -Raw) -Replace '{WHOAMI}',(whoami)) -Replace '{SID}',$sid | Set-Content -Path C:\Users\Public\SetupDC.xml;
     #Then use XML file to create Scheduled Task to continue setup process after reboots
     Register-ScheduledTask -TaskName 'SetupDC' -XML C:\Users\Public\SetupDC.xml;
     Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
+
+    #Install Emulation tools
+    Write-Host "[i] Downloading emulation tools"
+    powershell -ep bypass C:\Users\Public\download-emulation-tools.ps1;
+
+    #Install tools for detections
+    Write-Host "[i] Installing tools for detections"
+    powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
 
     Start-Sleep -Seconds 3;
     powershell -ep bypass C:\Users\Public\rename-dc.ps1;
@@ -75,14 +83,6 @@ else {
     }
     #Step 4
     else {
-        #Install tools for detections
-        Write-Host "[i] Installing tools for detections"
-        powershell -ep bypass C:\Users\Public\install-detection-tools.ps1;
-
-        #Download Emulation tools
-        Write-Host "[i] Downloading emulation tools"
-        powershell -ep bypass C:\Users\Public\download-emulation-tools.ps1;
-
         #Make hidden files and extensions visible in Explorer
         Write-Host "[i] Making hidden files and extensions visible in Explorer"
         powershell -ep bypass C:\Users\Public\hidden-files.ps1;
