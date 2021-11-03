@@ -24,7 +24,7 @@ if ($env:COMPUTERNAME -ne "targetDC") {
     $sid = ([System.Security.Principal.WindowsIdentity]::GetCurrent()).User.Value;
     ((Get-Content -Path C:\Users\Public\SetupDC.xml -Raw) -Replace '{WHOAMI}',(whoami)) -Replace '{SID}',$sid | Set-Content -Path C:\Users\Public\SetupDC.xml;
     #Then use XML file to create Scheduled Task to continue setup process after reboots
-    Register-ScheduledTask -TaskName 'SetupDC' -XML C:\Users\Public\SetupDC.xml;
+    Register-ScheduledTask -TaskName 'SetupDC' -XML (Get-Content -Path C:\Users\Public\SetupDC.xml | Out-String);
     Write-Host "[i] Scheduled Task SetupDC to continue setup as Administrator set";
 
     #Install Emulation tools
