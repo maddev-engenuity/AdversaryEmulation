@@ -16,7 +16,7 @@ if (-not $testchoco) {
 }
 
 #Install Microsoft Office with Chocolatey
-choco install office365homepremium -y;
+choco install office365business /exclude:"Access Groove Lync OneDrive OneNote Outlook Publisher Excel PowerPoint" -y;
 Write-Host "[+] Installed Microsoft Office";
 
 #Install 7-Zip Command Line tools with Chocolatey
