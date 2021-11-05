@@ -87,6 +87,9 @@ else {
         Write-Host "[i] Setting desktop background"
         powershell -ep bypass C:\Users\Public\set-windows-wallpaper.ps1;
 
+        #Enable wdigest cleartext password logging
+        Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest' -Name 'UseLogonCredential' -Type DWord -Value 1;
+        
         #Remove SetupDC scheduled task
         Unregister-ScheduledTask -TaskName 'SetupDC' -Confirm:$false;
         Write-Host "[i] Deleted SetupDC scheduled task";

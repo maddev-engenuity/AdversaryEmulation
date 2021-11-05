@@ -21,6 +21,7 @@ Write-Host "[+] Installed Microsoft Office";
 
 #Install 7-Zip Command Line tools with Chocolatey
 choco install 7zip.install -y;
+Move-Item -Path C:\ProgramData\chocolatey\bin\7z.exe -Destination C:\ProgramData\chocolatey\bin\7.exe;
 Write-Host "[+] Installed 7-Zip";
 
 #Install PuTTY Portable Suite for Plink.exe with Chocolatey
