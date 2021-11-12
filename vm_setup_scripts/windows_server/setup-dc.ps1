@@ -89,6 +89,9 @@ else {
 
         #Enable wdigest cleartext password logging
         Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest' -Name 'UseLogonCredential' -Type DWord -Value 1;
+
+        #Allow FTP connections through the FireWall
+        New-NetFirewallRule -DisplayName "FTP In" -Direction Inbound -Protocol TCP -Enabled True -Action Allow -Profile Any -Program "%SystemRoot%\System32\ftp.exe" -Service Any -LocalPort 20,21,1024-65535 -EdgeTraversalPolicy Allow;
         
         #Remove SetupDC scheduled task
         Unregister-ScheduledTask -TaskName 'SetupDC' -Confirm:$false;
