@@ -1,8 +1,16 @@
-# MITRE ATT&CK Defender - ATT&CK Adversary Emulation Fundamentals
+# MITRE ATT&CK® Defender - ATT&CK Adversary Emulation Fundamentals
 
 MITRE ATT&CK Defender is the cybersecurity community’s new ATT&CK training and certification program produced by MITRE’s own ATT&CK subject matter experts.
 
-This repository contains the materials required for completing hands-on labs taught in the MITRE ATT&CK Defender Adversary Emulation course.
+This repository contains the materials required for completing hands-on labs taught in the upcoming MITRE ATT&CK Defender Adversary Emulation Fundamentals course.
+
+## :tornado: Pardon our Dust
+
+This repository is under active development.
+
+You may observe frequent changes, and placeholders for future content.
+
+Check out the [releases](https://github.com/maddev-engenuity/AdversaryEmulation/releases) section for stable content.
 
 ## :computer: Instructions
 
@@ -69,17 +77,15 @@ The following instructions describe how to install and configure a virtual envir
 
 If you found a defect that is preventing you from completing the lab exercises, follow these steps:
 
-1. First confirm that the problem is not due to user error. :grin:
+1. [Open a GitHub issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue).
 
-2. [Open a git issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue).
+2. Clearly state the problem.
 
-3. Clearly state the problem.
+3. Provide steps to reproduce the problem.
 
-4. Provide steps to reproduce the problem.
+4. Include pertinent screenshots, logs, and/or error messages.
 
-5. Include pertinent screenshots, logs, and/or error messages.
-
-6. We welcome recommended solutions and/or corrective pull requests.
+5. We welcome recommended solutions and/or corrective pull requests.
 
 ## :beetle: Have a Bug-Fix?
 
