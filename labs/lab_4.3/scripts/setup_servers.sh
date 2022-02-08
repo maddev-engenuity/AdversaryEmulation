@@ -13,7 +13,7 @@ if [ ! "$EUID" -eq 0 ]
 fi
 
 # run python3 HTTP server in the background, and store the PID of the server into a file for later reference
-python3 -m http.server 80 --directory .. &
+python3 -m http.server 80 --directory .. 2>/dev/null &
 echo $! > http_server.pid
 echo "[+] Started Python3 HTTP server"
 
