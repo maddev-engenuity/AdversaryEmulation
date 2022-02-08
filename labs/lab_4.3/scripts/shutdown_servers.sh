@@ -31,7 +31,7 @@ fi
 msf_pid=$(ps aux | grep '[m]sfconsole' | awk '{print $2}')
 
 if [ $msf_pid ]; then
-	kill -9 msf_pid
+	kill -9 $msf_pid
 	echo "[+] Stopped msfconsole."
 else
 	echo "[+] msfconsole already stopped."
