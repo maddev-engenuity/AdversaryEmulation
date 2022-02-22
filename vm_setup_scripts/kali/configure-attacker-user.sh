@@ -6,5 +6,5 @@ else
     useradd -m -s /bin/bash attacker
     echo "attacker:ATT&CK" | chpasswd
 fi
-usermod -a attacker -G sudo
+usermod -a attacker -G kali-trusted
 echo "[i] attacker user configured"
