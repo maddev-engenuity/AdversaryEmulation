@@ -20,4 +20,33 @@ ToDo:
     2. Install SysInternals
     3. Enable PowerShell Script Block logging
 
+Step 1
+    Student powers on VMs / accesses the range environment
 
+Step 2
+    Student uses automated scripts to setup .lnk payload
+
+Step 3
+    Student sets up WireShark
+    Process Explorer
+    Procmon? Might require too much configuration...
+
+Step 4
+    Student executes .lnk payload
+
+Step 5
+    Student stops sensors?
+
+Step 6
+    Review WireShark
+
+Step 7
+    Review Process Explorer
+
+Step 8
+    Review Windows event logs
+
+Learning Check
+
+    Describe 3x ways of detecting the emulated TTPs
+    Describe 3x ways of mitigating the emulated TTPs
