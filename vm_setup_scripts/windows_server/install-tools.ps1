@@ -19,6 +19,9 @@ if (-not $testchoco) {
 choco install office365business --params='/exclude:"Access Groove Lync OneDrive OneNote Outlook Publisher Excel PowerPoint Teams"' -y;
 Write-Host "[+] Installed Microsoft Office";
 
+# Install Microsoft Edge
+choco install microsoft-edge -y;
+
 #Install 7-Zip Command Line tools with Chocolatey
 choco install 7zip.install -y;
 Move-Item -Path C:\ProgramData\chocolatey\bin\7z.exe -Destination C:\ProgramData\chocolatey\bin\7.exe;
