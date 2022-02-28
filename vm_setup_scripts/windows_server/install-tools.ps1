@@ -62,4 +62,5 @@ Write-Host "[+] Installed APIMonitor";
 
 #Install WireShark using Chocolatey
 choco install wireshark -y;
+choco install WinPCAP -y;
 Write-Host "[+] Installed WireShark";
