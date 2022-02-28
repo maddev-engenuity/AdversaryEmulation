@@ -1,8 +1,8 @@
-# MITRE ATT&CK® Defender - ATT&CK Adversary Emulation Fundamentals
+# MITRE ATT&CK® Defender - ATT&CK Adversary Emulation
 
 MITRE ATT&CK Defender is the cybersecurity community’s new ATT&CK training and certification program produced by MITRE’s own ATT&CK subject matter experts.
 
-This repository contains the materials required for completing hands-on labs taught in the upcoming MITRE ATT&CK Defender Adversary Emulation Fundamentals course.
+This repository contains the materials required for completing hands-on labs taught in the upcoming MITRE ATT&CK Defender Adversary Emulation  course.
 
 ## :tornado: Pardon our Dust
 
