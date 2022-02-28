@@ -1,0 +1,23 @@
+Phishing: Spearphishing Link
+Commonly Used Port
+Application Layer Protocol: Web Protocols
+    Network Traffic: WireShark (dynamic analysis)
+
+User Execution: Malicious File
+    File (maybe Procmon?)
+    Process (process explorer)
+
+Boot or Logon Autostart Execution: Shortcut Modification
+    File (procmon)
+    Process (process explorer)
+
+Command and Scripting Interpreter: PowerShell
+Obfuscated Files or Information
+    PowerShell script block logging
+
+ToDo:
+    1. Install WireShark
+    2. Install SysInternals
+    3. Enable PowerShell Script Block logging
+
+

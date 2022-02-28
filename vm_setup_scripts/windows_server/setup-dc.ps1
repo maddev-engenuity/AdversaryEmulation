@@ -6,7 +6,8 @@ $ErrorActionPreference = "Stop"
 if (-not (Test-Path C:\Users\Public\setup-dc.ps1) -or -not (Test-Path C:\Users\Public\set-windows-wallpaper.ps1) -or -not (Test-Path C:\Users\Public\Pictures\target-background.png)) {
     Write-Host "[i] Copying scripts to C:\Users\Public";
     Copy-Item .\setup-dc.ps1,.\SetupDC.xml,.\disable-defender.ps1,.\rename-dc.ps1,.\create-domain.ps1,.\add-domain-entities.ps1,.\install-tools.ps1,.\hidden-files.ps1,.\set-windows-wallpaper.ps1 -Destination C:\Users\Public;
-    Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;
+    Copy-Item .\enable-PSlogging.ps1 -Destination C:\Users\Public;
+    Copy-Item .\target-background.png -Destination C:\Users\Public\Pictures\target-background.png;    
 }
 
 #Step 1
@@ -103,6 +104,10 @@ else {
         Remove-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'AutoAdminLogon';
         Set-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon" -Name 'DefaultDomainName' -Type String -Value "";
         Write-Host "[i] Removed autologon credentials.";
+
+        # enable PowerShell logging
+        Write-Host "[i] Enabling PowerShell logging"
+        powershell -ep bypass C:\Users\Public\enable-PSlogging.ps1;
 
         Write-Host "[i] Setup is now complete. Server will reboot for clean start.";
         Start-Sleep -Seconds 3;
