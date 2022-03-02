@@ -1,3 +1,9 @@
+Objectives:
+
+1. Identity ways to detect executed TTPs
+2. Identify ways to mitigate executed TTPs
+3. Utilize common cybersecurity tools to better understand TTPs
+
 Phishing: Spearphishing Link
 Commonly Used Port
 Application Layer Protocol: Web Protocols
@@ -29,7 +35,7 @@ Step 2
 Step 3
     Student sets up WireShark
     Process Explorer
-    Procmon? Might require too much configuration...
+    clears logs
 
 Step 4
     Student executes .lnk payload
