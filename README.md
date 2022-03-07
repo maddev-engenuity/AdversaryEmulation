@@ -26,11 +26,13 @@ The following instructions describe how to install and configure a virtual envir
 
     b. [Windows Server 2019 - Trial Version](https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2019)
 
-3. From both your Kali and Windows Server 2019 virtual machines, download the latest [Adversary Emulation Fundamentals release folder](https://github.com/maddev-engenuity/AdversaryEmulation/releases).
+3. From both your Kali and Windows Server 2019 virtual machines, git clone this repository.
 
-4. Unzip the AdversaryEmulation folder.
+```
+git clone git@github.com:maddev-engenuity/AdversaryEmulation.git
+```
 
-5. Execute the automated setup script for your VMs:
+4. Execute the automated setup scripts for your VMs:
 
     a. Kali:
 
